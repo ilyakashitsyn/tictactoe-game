@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "rimraf dist && tsc && vite build",
+    "preview": "vite preview",
+    "clear": "rimraf dist",
+    "watch": "rimraf dist && tsc --watch"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
