@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rimraf dist && tsc && vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "clear": "rimraf dist",
     "watch": "rimraf dist && tsc --watch"
