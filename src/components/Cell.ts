@@ -2,39 +2,49 @@ import type { CellValue } from '../models/types';
 import type { Position } from '../models/types';
 
 export class Cell {
-  private cellInput: HTMLInputElement;
+  private element: HTMLDivElement;
   private cellValue: CellValue;
   private position: Position;
   private onClick: (pos: Position) => void;
 
-  constructor(
-    cellInput: HTMLInputElement,
-    position: Position,
-    onClick: (pos: Position) => void,
-  ) {
-    this.cellInput = cellInput;
+  constructor(position: Position, onClick: (pos: Position) => void) {
     this.position = position;
     this.cellValue = null;
     this.onClick = onClick;
 
-    this.cellInput.addEventListener('click', () => {
+    // Создаем DOM элемент
+    this.element = document.createElement('div');
+    this.element.classList.add('cell');
+
+    // Вешаем слушатель события клика на input
+    this.element.addEventListener('click', () => {
       if (this.cellValue === null) {
         this.onClick(this.position);
       }
     });
   }
 
-  public setValue(value: CellValue): void {
-    this.cellValue = value;
-    this.cellInput.value = value ?? '';
+  // Метод, который возвращает DOM элемент
+  public getElement(): HTMLDivElement {
+    return this.element;
   }
 
+  // Установка значения ячейки
+  public setValue(value: CellValue): void {
+    this.cellValue = value;
+    this.element.textContent = value ?? '';
+    this.element.classList.add(value === 'X' ? 'x' : 'o');
+  }
+
+  // Получение доступа к значению ячейки
   public getValue(): CellValue {
     return this.cellValue;
   }
 
+  // Очищение значения ячейки
   public clear(): void {
     this.cellValue = null;
-    this.cellInput.value = '';
+    this.element.textContent = '';
+    this.element.classList.remove('x', 'o');
   }
 }
