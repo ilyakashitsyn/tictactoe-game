@@ -1,5 +1,4 @@
-import type { CellValue } from '../models/types';
-import type { Position } from '../models/types';
+import type { CellValue, Position } from '../models/types';
 
 export class Cell {
   disable(): void {
