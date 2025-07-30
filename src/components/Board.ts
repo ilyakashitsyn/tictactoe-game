@@ -36,4 +36,9 @@ export class Board {
   public clear(): void {
     this.cells.forEach(row => row.forEach(cell => cell.clear()));
   }
+
+  // Запретить взаимодействие с ячейками
+  public disable(): void {
+    this.cells.forEach(row => row.forEach(cell => cell.disable()));
+  }
 }

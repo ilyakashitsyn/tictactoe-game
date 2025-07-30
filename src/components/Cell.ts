@@ -2,6 +2,10 @@ import type { CellValue } from '../models/types';
 import type { Position } from '../models/types';
 
 export class Cell {
+  disable(): void {
+    throw new Error('Method not implemented.');
+  }
+
   private element: HTMLDivElement;
   private cellValue: CellValue;
   private position: Position;
