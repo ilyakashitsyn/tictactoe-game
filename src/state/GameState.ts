@@ -44,6 +44,23 @@ export class GameState {
     return this.draw;
   }
 
+  // Установка победителя
+  public setWinner(winner: Player | null): void {
+    this.winner = winner;
+  }
+
+  // Сброс состояния игры
+  public reset(): void {
+    for (const row of this.board) {
+      for (const cell of row) {
+        cell.clear();
+      }
+    }
+    this.currentPlayer = 'X';
+    this.winner = null;
+    this.draw = false;
+  }
+
   // Обработка клика по ячейке
   handleCellClick(position: Position): void {
     const cell = this.board[position.row][position.col];
