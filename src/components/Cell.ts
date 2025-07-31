@@ -50,4 +50,9 @@ export class Cell {
     this.element.textContent = '';
     this.element.classList.remove('x', 'o');
   }
+
+  // Проверка, пуста ли ячейка
+  public isEmpty(): boolean {
+    return this.cellValue === null;
+  }
 }

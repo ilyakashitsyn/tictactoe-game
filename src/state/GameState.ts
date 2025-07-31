@@ -1,10 +1,13 @@
 import type { Player, Position } from '../models/types';
 import { Cell } from '../components/Cell';
-import { checkWinner, isDraw, reset } from '../utils/checkWinner';
+import { checkWinner, isDraw } from '../utils/checkWinner';
 
 export class GameState {
   private currentPlayer: Player;
   private board: Cell[][];
+
+  private winner: Player | null = null;
+  private draw: boolean = false;
 
   constructor(board: Cell[][]) {
     this.currentPlayer = 'X';
@@ -29,5 +32,35 @@ export class GameState {
       return true;
     }
     return false;
+  }
+
+  // Проверка на победителя
+  public getWinner(): Player | null {
+    return this.winner;
+  }
+
+  // Проверка на ничью
+  public isDraw(): boolean {
+    return this.draw;
+  }
+
+  // Обработка клика по ячейке
+  handleCellClick(position: Position): void {
+    const cell = this.board[position.row][position.col];
+    if (!cell.isEmpty() || this.winner || this.draw) return;
+
+    cell.setValue(this.currentPlayer);
+
+    if (checkWinner(this.currentPlayer, this.board)) {
+      this.winner = this.currentPlayer;
+      return;
+    }
+
+    if (isDraw(this.board)) {
+      this.draw = true;
+      return;
+    }
+
+    this.switchPlayer();
   }
 }

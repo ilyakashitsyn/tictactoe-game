@@ -51,6 +51,7 @@ export function checkWinner(_player: Player, board: Cell[][]) {
     ],
   ];
 
+  // Проверка каждой линии на победителя
   for (const line of lines) {
     const [a, b, c] = line;
     const valA = board[a.row][a.col].getValue();
