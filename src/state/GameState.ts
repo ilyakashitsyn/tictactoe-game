@@ -1,5 +1,6 @@
 import type { Player, Position } from '../models/types';
 import { Cell } from '../components/Cell';
+import { checkWinner, isDraw, reset } from '../utils/checkWinner';
 
 export class GameState {
   private currentPlayer: Player;
