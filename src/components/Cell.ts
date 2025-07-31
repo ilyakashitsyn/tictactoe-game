@@ -55,4 +55,11 @@ export class Cell {
   public isEmpty(): boolean {
     return this.cellValue === null;
   }
+
+  public render(): HTMLDivElement {
+    const cellEl = document.createElement('div');
+    cellEl.classList.add('cell');
+    cellEl.textContent = this.cellValue ?? '';
+    return cellEl;
+  }
 }
