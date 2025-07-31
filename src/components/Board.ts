@@ -41,4 +41,23 @@ export class Board {
   public disable(): void {
     this.cells.forEach(row => row.forEach(cell => cell.disable()));
   }
+
+  // Рендеринг доски в контейнер
+  public render(
+    container: HTMLDivElement,
+    onClick: (cell: Cell) => void,
+  ): void {
+    container.innerHTML = '';
+    for (const row of this.cells) {
+      const rowDiv = document.createElement('div');
+      rowDiv.classList.add('row');
+
+      for (const cell of row) {
+        const cellEl = cell.render();
+        cellEl.addEventListener('click', () => onClick(cell));
+        rowDiv.appendChild(cellEl);
+      }
+      container.appendChild(rowDiv);
+    }
+  }
 }
