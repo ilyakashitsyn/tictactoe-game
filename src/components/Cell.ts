@@ -1,8 +1,8 @@
 import type { CellValue, Position } from '../models/types';
 
 export class Cell {
-  disable(): void {
-    throw new Error('Method not implemented.');
+  public disable(): void {
+    this.element.style.pointerEvents = '';
   }
 
   private element: HTMLDivElement;
