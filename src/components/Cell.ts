@@ -8,7 +8,7 @@ export class Cell {
   private element: HTMLDivElement;
   private cellValue: CellValue;
   private position: Position;
-  private onClick: (pos: Position) => void;
+  public onClick: (pos: Position) => void;
 
   constructor(position: Position, onClick: (pos: Position) => void) {
     this.position = position;
@@ -56,6 +56,7 @@ export class Cell {
     return this.cellValue === null;
   }
 
+  // Получение позиции ячейки
   public render(): HTMLDivElement {
     const cellEl = document.createElement('div');
     cellEl.classList.add('cell');
