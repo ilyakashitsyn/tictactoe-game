@@ -46,5 +46,3 @@ resetButton.addEventListener('click', () => {
   reset(board);
   gameState.reset();
 });
-
-appRoot.appendChild(resetButton);
